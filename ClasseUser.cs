@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 class User {
   //ATRIBUTOS DO USUARIO
-  string nome;
-  double balanço;
+  public string nome;
+  public double balanço;
 
   public User(){
     nome = "anonimo";

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 
 class Ideia {
-  User dono;
+  public User dono;
   public string descricao;
   public string areaAplicacao;
   public int tVotos;
@@ -12,6 +12,11 @@ class Ideia {
     descricao = d;
     areaAplicacao = a;
     tVotos = v;
+  }
+
+  public Ideia()
+  {
+    
   }
 
 
