@@ -1,10 +1,11 @@
 using System;
-
+using System.Collections.Generic;
+using System.Linq;
 class MainClass {
   public static void Main (string[] args) {
     //INSTANCIAR CLASSE VOTAR
     Votar campanha = new Votar();
-    User pessoa = new User();
+    //User pessoa = new User();
     Ideia newid = new Ideia();
 
     Console.WriteLine("Cadastro de Ideia");
@@ -19,21 +20,52 @@ class MainClass {
 
     if(resp == 'S')
     {
-      while(resp == 'S')
+      //while(resp == 'S')
+      do
       {
         Console.WriteLine("Insira o seu nome: ");
-        pessoa.nome = Console.ReadLine();
+        string nome = Console.ReadLine();
 
         Console.WriteLine("Dono da ideia: ");
-        newid.dono = Console.ReadLine();
+        string dono = Console.ReadLine();
 
         Console.WriteLine("Descrição da Ideia: ");
-        newid.descricao = Console.ReadLine();
+        string descricao = Console.ReadLine();
 
         Console.WriteLine("Área de Aplicação: ");
-        newid.areaAplicacao = Console.ReadLine();
+        string areaAplicacao = Console.ReadLine();
+
+        int votos = 0;
+        int id = 0;
+
+        Votar.AdicionarIdeia(new Ideia(dono, descricao, areaAplicacao, votos, id));
+        List <Ideia> portfolio = Votar.getListaIdeia();
+      
+        
+        Console.WriteLine("Deseja cadastrar uma nova ideia? * S * ou * N *");
+        resp = char.Parse(Console.ReadLine().ToUpper());
+
+        if(resp == 'N')
+        {
+          Console.WriteLine("Gostaria de consultar o portfolio de ideias? * S * ou * N *");
+          char consport = char.Parse(Console.ReadLine().ToUpper());
+
+          if(consport == 'S')
+          {
+            int i = 1;
+            foreach(Ideia x in portfolio)
+            {
+              Console.WriteLine("Ideia {0} {1}",i++, x.descricao);
+            }
+          }
+
+        }
+
 
       }
+      while(resp =='S');
+
+  
 
     }
 

@@ -2,16 +2,18 @@ using System;
 using System.Collections.Generic;
 
 class Ideia {
-  public User dono;
+  public string dono;
   public string descricao;
   public string areaAplicacao;
   public int tVotos;
+  public int id;
 
-  public Ideia (User u, string d, string a, int v){
+  public Ideia (string u, string d, string a, int v, int i){
     dono = u;
     descricao = d;
     areaAplicacao = a;
     tVotos = v;
+    id = i;
   }
 
   public Ideia()

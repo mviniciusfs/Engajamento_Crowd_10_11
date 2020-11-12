@@ -2,15 +2,23 @@ using System;
 using System.Collections.Generic;
 
 class Votar {
-  List<Ideia> portfolio;
+  //List<Ideia> portfolio;
 
+  public static List<Ideia>portfolio = new List<Ideia>();
+  
   public Votar(){
     portfolio = new List<Ideia>();
 
   }
 
-  public void AdicionarIdeia(Ideia i){
+  public static void AdicionarIdeia(Ideia i)
+  {
     portfolio.Add(i);
+  }
+
+  public static List<Ideia> getListaIdeia()
+  {
+    return portfolio;
   }
 
   public Ideia Vencedora(){
@@ -23,5 +31,7 @@ class Votar {
       }
     return maior_likes;
   }
+
+  
 
 }
