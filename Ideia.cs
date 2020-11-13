@@ -1,35 +1,43 @@
-class ideia{
+class ideia
+{
   public string descricao; 
   
   public string area;
 
   private int ranking;
 
-  public string Getdescricao() {
+  public string Getdescricao() 
+  {
     return descricao;
   }
  
-  public string Getarea() {
+  public string Getarea() 
+  {
     return area;
   }
 
-  public int Getranking() {
+  public int Getranking() 
+  {
     return ranking;
   }
 
-  public void Setdescricao(string dc){
+  public void Setdescricao(string dc)
+  {
     descricao = dc;
   }
   
   
-  public void Setarea(string a){
+  public void Setarea(string a)
+  {
     area = a;
   }
-  public void Setranking(int r){
+  public void Setranking(int r)
+  {
     ranking = r;
   }
 
-  public ideia(string d, string a, int rnk){
+  public ideia(string d, string a, int rnk)
+  {
    descricao = d;   
    area = a;
    ranking = rnk;
