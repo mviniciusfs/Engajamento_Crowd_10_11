@@ -16,6 +16,13 @@ class Votar {
     portfolio.Add(i);
   }
 
+  /*public static void AdicionarVoto(int i)
+  {
+    portfolio.Insert(i, new Ideia{tVotos = i++});
+  }*/
+
+  //portfolio.Insert(votos, new Ideia {tVoto = 1}); 
+
   public static List<Ideia> getListaIdeia()
   {
     return portfolio;

@@ -52,12 +52,38 @@ class MainClass {
 
           if(consport == 'S')
           {
-            int i = 1;
+            int i = 0;
             foreach(Ideia x in portfolio)
             {
-              Console.WriteLine("Ideia {0} {1}",i++, x.descricao);
+              Console.WriteLine("Ideia N°{0} Descrição: {1}",i++, x.descricao);
             }
+
+            while(consport == 'S')
+            {
+              Console.WriteLine();
+              Console.Write("Vote na ideia que mais gostou!!! É só digitar o N° e pressionar 'ENTER': ");
+              votos = int.Parse(Console.ReadLine());
+
+              portfolio.Add(new Ideia (dono, descricao, areaAplicacao, votos+=1, id));              
+
+                   
+            
+
+
+              Console.WriteLine("Deseja votar novamente? * S * ou * N *");
+              consport = char.Parse(Console.ReadLine().ToUpper());
+            }
+
+            int ia = 0;
+            foreach(Ideia x in portfolio)
+            {
+              Console.WriteLine("Ideia N°{0} Descrição: {1}",ia++, x.descricao);
+            }
+            
+            Console.WriteLine(campanha.Vencedora());
           }
+
+          
 
         }
 
