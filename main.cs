@@ -1,110 +1,74 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
+
 class MainClass {
-  public static void Main (string[] args) {
-    //INSTANCIAR CLASSE VOTAR
-    Votar campanha = new Votar();
-    //User pessoa = new User();
-    Ideia newid = new Ideia();
-
-    Console.WriteLine("Cadastro de Ideia");
-    Console.WriteLine("Deseja cadastrar uma ideia? * S * ou * N *");
-    char resp = char.Parse(Console.ReadLine().ToUpper());
-
-    if(resp == 'N')
-    {
-      Console.WriteLine();
-      Console.WriteLine("PROGRAMA FINALIZADO");
-    }
-
-    if(resp == 'S')
-    {
-      //while(resp == 'S')
-      do
-      {
-        Console.WriteLine("Insira o seu nome: ");
-        string nome = Console.ReadLine();
-
-        Console.WriteLine("Dono da ideia: ");
-        string dono = Console.ReadLine();
-
-        Console.WriteLine("Descrição da Ideia: ");
-        string descricao = Console.ReadLine();
-
-        Console.WriteLine("Área de Aplicação: ");
-        string areaAplicacao = Console.ReadLine();
-
-        int votos = 0;
-        int id = 0;
-
-        Votar.AdicionarIdeia(new Ideia(dono, descricao, areaAplicacao, votos, id));
-        List <Ideia> portfolio = Votar.getListaIdeia();
-      
-        
-        Console.WriteLine("Deseja cadastrar uma nova ideia? * S * ou * N *");
-        resp = char.Parse(Console.ReadLine().ToUpper());
-
-        if(resp == 'N')
-        {
-          Console.WriteLine("Gostaria de consultar o portfolio de ideias? * S * ou * N *");
-          char consport = char.Parse(Console.ReadLine().ToUpper());
-
-          if(consport == 'S')
-          {
-            int i = 0;
-            foreach(Ideia x in portfolio)
-            {
-              Console.WriteLine("Ideia N°{0} Descrição: {1}",i++, x.descricao);
-            }
-
-            while(consport == 'S')
-            {
-              Console.WriteLine();
-              Console.Write("Vote na ideia que mais gostou!!! É só digitar o N° e pressionar 'ENTER': ");
-              votos = int.Parse(Console.ReadLine());
-
-              portfolio.Add(new Ideia (dono, descricao, areaAplicacao, votos+=1, id));              
-
-                   
-            
-
-
-              Console.WriteLine("Deseja votar novamente? * S * ou * N *");
-              consport = char.Parse(Console.ReadLine().ToUpper());
-            }
-
-            int ia = 0;
-            foreach(Ideia x in portfolio)
-            {
-              Console.WriteLine("Ideia N°{0} Descrição: {1}",ia++, x.descricao);
-            }
-            
-            Console.WriteLine(campanha.Vencedora());
-          }
-
-          
-
-        }
-
-
-      }
-      while(resp =='S');
-
-  
-
-    }
-
-
+  public static void Main () { 
+    List <ideia>   Lista_ideia    = new List<ideia>();
     
-    //MENU CRIAR USUARIO
-      //ATRIBUTOS DO USUARIO - INSTANCIAR
-    //MENU CRIAR IDEIA
-      //ATT. IDEIA - INSTANCIAR
-    //MENU VOTAR
-      //VISUALIZAR AS IDEIAS NA LISTA e PERMITIR LIKE
-    //MENU DEFINIR VENCEDOR
-      //CHAMAR VENCEDORA()
+    List <votacao> Lista_votacaos = new List<votacao>(); 
+    
+    string cadastrar = "S";
+    int quantidadeJogadores = 0;
+    while (cadastrar == "S"){
+      quantidadeJogadores++;
+      votacao vt = new votacao (0);
+      usuario anonimo = new usuario("anonimo", 0,"Confirma e-mail", 0);
+      ideia   id      = new ideia  ("ideia", "area",0);
+      // // // descricao, votostotais, area, ranking
 
+      Console.WriteLine("Deseja cadastrar um novo usuario ? S/N");
+      cadastrar = Console.ReadLine();
+      
+      
+      if (cadastrar == "S"){
+       
+        Console.WriteLine("diga o nome>>");
+        string nome = Console.ReadLine();
+        
+        anonimo.Setnome(nome);
+        Console.WriteLine("diga o email>>");
+
+        string email = Console.ReadLine();
+        anonimo.Setemail(email);
+        Console.WriteLine ("diga o telefone>>");
+
+        int telefone = int.Parse(Console.ReadLine());
+        anonimo.Settelefone(telefone);
+        anonimo.Setfundos(0);
+
+        Console.WriteLine ("diga sua ideia");
+         string descricao= Console.ReadLine();
+         id.Setdescricao(descricao);
+        
+        Console.WriteLine("qual a aréa da sua ideia?");
+        string area = Console.ReadLine();
+        id.Setarea(area);
+        
+        Lista_ideia.Add(id);
+        vt.like = 0;       
+        Lista_votacaos.Add(vt);
+        
+        
+      }
+       
+    } 
+
+    for(int i = 0; i<Lista_ideia.Count; i++){
+      Console.WriteLine("INDICE -- IDEIA -- ÁREA");
+
+      for(int j = 0; j<Lista_ideia.Count; j++){
+       Console.WriteLine( $"{j} {Lista_ideia[j].Getdescricao()} -- {Lista_ideia[j].Getarea()}" );
+        
+      }
+      Console.WriteLine("Indice que você vai votar>>");
+      
+      int indiceVotar = int.Parse(Console.ReadLine());
+      Lista_votacaos[indiceVotar].like += 1;
+    
+
+    }
+      int indiceVencedor = votacao.vencedor(Lista_votacaos);
+      double SemCriatividadePraFazerNomeDeVariavelNessaDesgraca = votacao.calculaPrecoVencedor(quantidadeJogadores, indiceVencedor);
+      Console.WriteLine($"Vencedor foi {Lista_ideia[indiceVencedor].descricao} com mais votos, vá la pegar seus {SemCriatividadePraFazerNomeDeVariavelNessaDesgraca} reais vadia(NAÕ VOTA ZERO CARAI)");
   }
 }
