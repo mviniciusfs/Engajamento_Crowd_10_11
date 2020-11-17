@@ -19,8 +19,24 @@ class MainClass
       ideia   id      = new ideia  ("ideia", "area",0);
       // // // descricao, votostotais, area, ranking
 
-      Console.WriteLine("Deseja cadastrar um novo usuario ? S/N");
-      cadastrar = char.Parse(Console.ReadLine().ToUpper());
+      bool chave1 = true;
+
+      do
+      {
+        try
+        {
+         Console.WriteLine("Deseja cadastrar um novo usuario ? S/N");
+          cadastrar = char.Parse(Console.ReadLine().ToUpper());
+          chave1 = false;
+        }
+        catch
+        {
+          Console.WriteLine("Valor digitado não confere");
+          chave1 = true;
+        }
+      }
+      while(chave1);
+
       
       
       if (cadastrar == 'S')
